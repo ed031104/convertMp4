@@ -10,8 +10,9 @@ def convert_video_endpoint():
         return jsonify({'error': 'No directory provided'}), 400
 
     directorio = data['directorio']
-    resultado = convert_video(directorio)
-    
+    destino = data['destino'] 
+    resultado = convert_video(directorio, destino)
+
     if "Error" in resultado:
         return jsonify({'error': resultado}), 500
     
@@ -25,9 +26,10 @@ def convert_many_video_endpoint():
         return jsonify({'error': 'No directory provided'}), 400
 
     directorio = data['directorio']
-    resultado = convert_many_videos(directorio)
+    destino = data['destino']
+
+    result = convert_many_videos(directorio, destino) 
+    if "Error" in result:
+        return jsonify({'error': result}), 500
     
-    if "Error" in resultado:
-        return jsonify({'error': resultado}), 500
-    
-    return jsonify({'message': 'Video converted successfully', 'result': resultado}), 200
+    return jsonify({'message': 'Video converted successfully', 'result': result}), 200

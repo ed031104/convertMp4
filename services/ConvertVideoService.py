@@ -1,12 +1,10 @@
-import models.convertVideo as convertVideo 
-from tkinter import filedialog
+import models.convertVideo as convertVideo
 
-def convert_video(directorio):
+def convert_video(directorio, destino):
     if directorio:
-        archivo_salida = convertVideo.seleccionar_destino()
-        if archivo_salida:
+        if destino:
             try:
-                convertVideo.convertir_a_mp4(directorio, archivo_salida)
+                convertVideo.convertir_a_mp4(directorio, destino)
                 return "Video converted successfully"
             except Exception as e:
                 return f"Error during conversion: {e}"
@@ -15,17 +13,17 @@ def convert_video(directorio):
     else:
         return "No input directory selected."
 
-def convert_many_videos(directorio):
+def convert_many_videos(directorio, destino):
     videos = convertVideo.obtener_videos(directorio)
     if videos:
         print("Videos encontrados:")
         for video in videos:
             print(video)
-            carpeta_salida = convertVideo.seleccionar_carpeta()
-            if carpeta_salida:
-                convertVideo.convertir_many_mp4(videos, carpeta_salida)
+            if destino:
+                ruta_Destino = convertVideo.seleccionar_archivo(destino)
+                convertVideo.convertir_many_mp4(videos, ruta_Destino)
             else:
-                print("No se seleccionó ninguna carpeta de salida.")
+                return"No se seleccionó ninguna carpeta de salida."
     else:
-        print("No se encontraron videos en la carpeta seleccionada.")
+        return "No se encontraron videos en la carpeta seleccionada."
     
