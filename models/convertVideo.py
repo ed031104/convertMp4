@@ -34,7 +34,8 @@ def obtener_videos(directorio):
 
 def convertir_a_mp4(archivo_entrada, archivo_salida):
     try:
-        clip = VideoFileClip(archivo_entrada)
+        input_path = 'file:' + archivo_entrada if not archivo_entrada.startswith('file:') else input_path
+        clip = VideoFileClip(input_path)
         clip.write_videofile(archivo_salida, codec='libx264')
         print(f"Conversión completa: {archivo_salida}")
     except Exception as e:
@@ -43,9 +44,14 @@ def convertir_a_mp4(archivo_entrada, archivo_salida):
 def convertir_many_mp4(archivos_entrada, carpeta_salida):
     try:
         for archivo in archivos_entrada:
-            clip = VideoFileClip(str(archivo))
+            input_path = 'file:' + archivo if not archivo.startswith('file:') else input_path
+           
+            clip = VideoFileClip(str(input_path))
+           
             nombre_salida = Path(carpeta_salida) / (archivo.stem + ".mp4")
+           
             clip.write_videofile(str(nombre_salida), codec='libx264')
+           
             print(f"Conversión completa: {nombre_salida}")
     except Exception as e:
         print(f"Error al convertir el archivo: {e}")
