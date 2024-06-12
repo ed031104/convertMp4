@@ -17,6 +17,9 @@ numpy==1.26.4
 packaging==24.1
 pillow==10.3.0
 proglog==0.1.10
+python-decouple==3.8
+python-dotenv==1.0.1
+pytz==2024.1
 requests==2.32.3
 tqdm==4.66.4
 urllib3==2.2.1
