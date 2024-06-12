@@ -1,46 +1,44 @@
-## API para convertir cualquier tipo de video a MP4
-
 
 ## About Me:
 
 A brief description of what this project does and who it's for
 
-Este proyecto se hizo con el fin de poder convertir cualquier formato de video a mp4 con python, ocupando la librería  "moviepy"
+This project was made in order to be able to convert any video format to mp4 with python, occupying the "moviepy" library
 
 ## Installation
 
-Instala las dependencias necesarias para ejecutar este proyecto con pip
+Install the dependencies needed to run this project with pip
 
 ```bash
   pip install -r requirements.txt
 ```
 ## Features
 
-- Convertir un video a mp4
-- convertir toda una carpeta de videos a mp4
+- Convert a video to mp4
+- Convert an entire video folder to MP4
 
 ## Demo
 
 | Endpoint             |      función                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| /convert | convierte un video a mp4 |
-| /convertFolder | convierte una carpeta de videos a mp4 |
+| /convert | Convert a video to mp4 |
+| /convertFolder | Convert a video folder to MP4 |
 
 * endpoint /convertFolder
 
 ```python
-#Código hecho en python
+#Code made in python
 
 import requests
 
 url = "http://127.0.0.1:5000/convertFolder" 
 data = {
-  #Cambia las rutas según donde se encuentre el video a convertir
+  #Change the paths depending on where the video to be converted is located
 
-  #Aquí cambias la dirección donde se encuentre la carpeta con los videos
+  #Here you change the address where the folder with the videos is located
     "directorio": "C:\\Users\\edwin\\Desktop\\go avanzado concurrencia sin convertir",
 
-# Aquí pones la dirección donde quieres que se guarden los videos
+# Here you put the address where you want the videos to be saved
     "destino": "C:\\Users\\edwin\\Desktop\\prueba"
 }
 
@@ -55,18 +53,18 @@ else:
 * endpoint /convert
 
 ```python
-#Código hecho en python
+#Code made in python
 
 import requests
 
 url = "http://127.0.0.1:5000/convert" 
 data = {
-  #Cambia las rutas según donde se encuentre el video a convertir
+  #Change the paths depending on where the video to be converted is located
   
-    #Aquí cambias la dirección donde se encuentre la carpeta con el video a convertir
+    #Here you change the address where the folder with the video to be converted is located
     "directorio": "C:\\Users\\edwin\\Desktop\\go avanzado concurrencia sin convertir",
 
-    #Aquí pones la dirección en donde se guardará el video, al final se le agrega el nombre nuveo con la extensión mp4
+    #Here you put the address where the video will be saved, at the end the name is added to it with the mp4 extension
     "destino": "C:\\Users\\edwin\\Desktop\\prueba\\video_convert.mp4"
 }
 response = requests.post(url, json=data)
@@ -88,3 +86,7 @@ else:
 ## Authors
 
 - [@Edwin Dávila](https://github.com/ed031104)
+
+## Feedback
+
+If you have any feedback, please reach out  edwin.noviembre.0306@gmail.com
