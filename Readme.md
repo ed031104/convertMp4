@@ -11,15 +11,22 @@ First, create a virtual environment:
 
 
 ```bash
-python -m virtualenv venv
+python -m venv Virtual_Environment_Name
 ```
 
+
+Then activate your virtual environment
+
+```bash
+cd Virtual_Environment_Name/Script/activate
+```
 
 Install the dependencies needed to run this project with pip
 
 ```bash
   pip install -r requirements.txt
 ```
+
 ## Features
 
 - Convert a video to mp4
@@ -27,10 +34,10 @@ Install the dependencies needed to run this project with pip
 
 ## Demo
 
-| Endpoint             |      función                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| /convert | Convert a video to mp4 |
-| /convertFolder | Convert a video folder to MP4 |
+| Endpoint | Function | method  |
+| -------- | ------- | ------- |
+| /convert | Convert a video to mp4 | post |
+| /convertFolder | Convert a video folder to MP4 | post|
 
 * endpoint /convertFolder
 
@@ -81,6 +88,40 @@ if response.status_code == 200:
     print("Conversión exitosa:", response.json())
 else:
     print("Error al convertir:", response.status_code, response.text)
+```
+
+# Petition from Postman
+
+- **To convert a video to mp3**
+
+To make the request to POSTMAN we first indicate that it will be of type **POST**
+
+Then the URL where the API is running is passed to it and we pass the endpoind "**/convert**"
+
+![Logo](https://vlink.lol/vfm/play/imgEdwin/Captura-de-pantalla-2024-06-12-113345.png)
+
+Now it is only passed the "directory" and "destination" parameters in a json
+
+```json
+  {
+    'directorio': 'C:\\ruta\\de\\ejemplo\\nombreVideo.mp4',
+    'destino': 'C:\\ruta\\de\\ejemplo\\nuevo_nombre_de_video.mp4'
+  }
+```
+- **To convert a video folder to mp3**
+
+To make the request to POSTMAN we first indicate that it will be of type **POST**
+
+then the URL where the API is running is passed to it and we pass the endpoind "**/convertFolder**"
+
+![Logo](https://vlink.lol/vfm/play/imgEdwin/Captura-de-pantalla-2024-06-12-141354.png)
+
+Now it is only passed the "directory" and "destination" parameters in a json
+```json
+  {
+    'directorio': 'C:\\ruta\\de\\ejemplo',
+    'destino': 'C:\\ruta\\de\\ejemplo'
+  }
 ```
 
 ## Tecnologys
