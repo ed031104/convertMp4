@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5000
 
 # Comando para ejecutar tu aplicación Flask
-CMD ["python", "main.py"]
+CMD ["python", "app.py"]
