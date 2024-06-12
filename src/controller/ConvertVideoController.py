@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request
-from services.ConvertVideoService import convert_video, convert_many_videos
+from src.services.ConvertVideoService import convert_video, convert_many_videos
 
 app = Flask(__name__)  
+
 
 @app.route('/convert', methods=['POST'])
 def convert_video_endpoint():
@@ -10,7 +11,7 @@ def convert_video_endpoint():
         return jsonify({'error': 'No directory provided'}), 400
 
     directorio = data['directorio']
-    destino = data['destino'] 
+    destino = data['destino']
     resultado = convert_video(directorio, destino)
 
     if "Error" in resultado:
@@ -27,8 +28,8 @@ def convert_many_video_endpoint():
 
     directorio = data['directorio']
     destino = data['destino']
-
     result = convert_many_videos(directorio, destino) 
+    
     if "Error" in result:
         return jsonify({'error': result}), 500
     

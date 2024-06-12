@@ -1,8 +1,4 @@
-from controller.ConvertVideoController import app
-from config import config
-
-configurations = config['development']
-app.config.from_object(configurations)
+from src.controller import ConvertVideoController
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    ConvertVideoController.app.run(debug=True)

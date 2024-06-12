@@ -2,9 +2,9 @@ from moviepy.editor import *
 import os
 from pathlib import Path
 
-def seleccionar_archivo(directorio):
-    archivo_seleccionado = Path(directorio)
-    return archivo_seleccionado
+# def seleccionar_archivo(directorio):
+#     archivo_seleccionado = Path(directorio)
+#     return archivo_seleccionado
 
 # def seleccionar_carpeta():
 #     root = tk.Tk()
@@ -24,7 +24,6 @@ def seleccionar_archivo(directorio):
 #     return destino_seleccionado
 
 def obtener_videos(directorio):
-    # Extensiones de archivos de video que deseas buscar
     extensiones_video = ['*.mp4', '*.avi', '*.mkv', '*.mov', '*.wmv', '*.flv', '*.mpeg']
     path_directorio = Path(directorio)
     videos = []
@@ -42,18 +41,16 @@ def convertir_a_mp4(archivo_entrada, archivo_salida):
         print(f"Error al convertir el archivo: {e}")
 
 def convertir_many_mp4(archivos_entrada, carpeta_salida):
-    try:
-        for archivo in archivos_entrada:
-            input_path = 'file:' + archivo if not archivo.startswith('file:') else input_path
-           
+    carpeta_salida = Path(carpeta_salida)  # Asegurarse de que carpeta_salida es un objeto Path
+    for archivo in archivos_entrada:
+        try:
+            archivo = Path(archivo)  # Asegurarse de que archivo es un objeto Path
+            input_path = 'file:' + str(archivo) if not str(archivo).startswith('file:') else archivo
             clip = VideoFileClip(str(input_path))
-           
-            nombre_salida = Path(carpeta_salida) / (archivo.stem + ".mp4")
-           
+            nombre_salida = carpeta_salida / (archivo.stem + ".mp4")
             clip.write_videofile(str(nombre_salida), codec='libx264')
-           
             print(f"Conversión completa: {nombre_salida}")
-    except Exception as e:
-        print(f"Error al convertir el archivo: {e}")
+        except Exception as e:
+            print(f"Error al convertir el archivo {archivo}: {e}")
 
 

@@ -1,4 +1,4 @@
-import models.convertVideo as convertVideo
+import src.models.convertVideo as convertVideo
 
 def convert_video(directorio, destino):
     if directorio:
@@ -13,17 +13,14 @@ def convert_video(directorio, destino):
     else:
         return "No input directory selected."
 
-def convert_many_videos(directorio, destino):
-    videos = convertVideo.obtener_videos(directorio)
+def convert_many_videos(carpeta_entrada, carpeta_salida):
+    videos = convertVideo.obtener_videos(carpeta_entrada)
     if videos:
-        print("Videos encontrados:")
-        for video in videos:
-            print(video)
-            if destino:
-                ruta_Destino = convertVideo.seleccionar_archivo(destino)
-                convertVideo.convertir_many_mp4(videos, ruta_Destino)
-            else:
-                return"No se seleccionó ninguna carpeta de salida."
+        try:
+            convertVideo.convertir_many_mp4(videos, carpeta_salida)
+            return "Videos converted successfully"
+        except Exception as e:
+            return f"Error during conversion: {e}"
     else:
         return "No se encontraron videos en la carpeta seleccionada."
     

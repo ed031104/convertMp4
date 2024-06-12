@@ -1,11 +1,19 @@
 
-## About Me:
+## Description:
 
 A brief description of what this project does and who it's for
 
 This project was made in order to be able to convert any video format to mp4 with python, occupying the "moviepy" library
 
 ## Installation
+
+First, create a virtual environment:
+
+
+```bash
+python -m virtualenv venv
+```
+
 
 Install the dependencies needed to run this project with pip
 
